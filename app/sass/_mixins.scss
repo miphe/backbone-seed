@@ -1,0 +1,39 @@
+
+/// Handy mixin for calculating and rendering an offset based on a number in a class.
+/// @group mixins
+/// @param {string} class-prefix - String that prefixes class name
+/// @param {number} offset - Pixles per unit to offset, if set to 10, each class will have an increment of 10
+/// @param {number} start-at - Number from which class suffix should start
+/// @param {number} stop-at - Number to which class suffix should stop. If param $3 is set to 5 and param $4 is set to 7, you will get 3 classes (.pref-5, .pref-6, .pref-7)
+/// @param {string} css-property [left] - CSS property to be used
+/// @param {bool} negative-increment [true] - Whether or not to use negative increments as CSS property value
+/// @param {bool} split [false] - Whether or not to divide px-per-unit in 2
+/// @param {number} add-at-end [0] - Number of px to add to px-per-unit lastly
+/// @example sass - Render offset styles
+///   +nr-offset(chars, 10, 1, 5);
+/// @example sass - Render offset styles
+///   +nr-offset(size, 20, 1, 3, margin-left, true, true, 15);
+
+@mixin nr-offset(
+  $prefix,
+  $px-per-unit: 5,
+  $from: 2,
+  $to: 2,
+  $property: left,
+  $negative-increment: true,
+  $split: false,
+  $add-at-end: 0) {
+  @if $split {
+    $px-per-unit: $px-per-unit/2;
+  }
+
+  @for $i from $from through $to {
+    .#{$prefix}-#{$i} {
+      @if $negative-increment {
+        #{$property}: -#{($i * round($px-per-unit)) + $add-at-end}px;
+      } @else {
+        #{$property}: #{($i * round($px-per-unit)) + $add-at-end}px;
+      }
+    }
+  }
+}

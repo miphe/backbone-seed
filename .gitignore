@@ -35,3 +35,13 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Generated docs
+docs
+
+# Generated scripts
+app/public/scripts
+test/scripts
+
+# Generated styles
+app/public/css

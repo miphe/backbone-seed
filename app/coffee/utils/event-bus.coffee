@@ -1,8 +1,9 @@
 
 Mn       = require 'backbone.marionette'
-# GlMa     = require './globalManip.coffee'
 _        = require 'underscore'
-# API      = require '../api.coffee'
+
+# GlMa     = require './globalManip.coffee'
+config   = require '../config.coffee'
 
 # The event-bus is a communication center for events,
 # allowing modules to affect each other yet staying
@@ -17,17 +18,25 @@ _        = require 'underscore'
 
 Navigate = Mn.Object.extend
 
+  ###*
+  * Sets up listeners and callbacks to be invoked on Navigation events.
+  * - Page title updates
+  * - Intercom (production)
+  * - Google Analytics (production)
+  * @param {object} opts - Options
+  ###
   initialize: (opts) ->
-    # @listenTo @, 'all', @intercomUpdate if API.getOption('production')
     @listenTo @, 'all', @updatePageTitle
-    # @listenTo @, 'all', @googleAnalyticsTracking if API.getOption('production')
+    @listenTo @, 'all', @intercomUpdate if config.ENVIRONMENT.production
+    @listenTo @, 'all', @googleAnalyticsTracking if config.ENVIRONMENT.production
 
   ###*
   * Invokes the `Intercom` method on the global object (`window`) with the 'update' argument.
-  * @param [object] e - Event
+  * @param {object} e - Event
   ###
   intercomUpdate: (e) ->
-    window.Intercom 'update'
+    console.warn 'Intercom setup error.' unless window.Intercom
+    window.Intercom 'update' if window.Intercom
 
   ###*
   * Tracks a page on Google Analytics,
@@ -72,7 +81,7 @@ Navigate = Mn.Object.extend
 
 MainChannel = Mn.Object.extend
   initialize: ->
-    # @listenTo @, 'scrollable-view:load', GlMa.setScrollBar
+    # Add your listeners and callbacks here..
 
 EventBus =
   Navigate: Navigate

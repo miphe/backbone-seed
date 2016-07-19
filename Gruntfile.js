@@ -31,7 +31,7 @@ module.exports = function (grunt) {
     sass: {
       options: {
         indentedSyntax: true,
-        outputStyle: 'compressed',
+        outputStyle: 'nested',
         sourceMap: false
       },
 

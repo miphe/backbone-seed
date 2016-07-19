@@ -27,6 +27,7 @@ Start.View = {}
 
 Start.View.ExampleView = Mn.ItemView.extend
   tagName: 'section'
+  className: 'example-view'
   template: tpl.greeting
 
 module.exports = Start

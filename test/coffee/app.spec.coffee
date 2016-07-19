@@ -1,9 +1,7 @@
 
 expect = require('chai').expect
 Mn = require 'backbone.marionette'
-# sinon = require 'sinon'
 
-ConfigObj = require '../../app/coffee/configObj.coffee'
 config = require '../../app/coffee/config.coffee'
 
 module.exports = describe 'Application setup', ->
@@ -12,15 +10,9 @@ module.exports = describe 'Application setup', ->
       expect(config).to.exist
       expect(config).to.be.an 'object'
 
-    it 'should be an instance of ConfigObj', ->
-      expect(ConfigObj).to.exist
-      expect(ConfigObj).to.be.a 'function'
-      expect(config).to.be.an.instanceof Mn.Object
-      expect(config).to.be.an.instanceof ConfigObj
-
     it 'should access config values', ->
-      fullEnv = config.getOption('ENVIRONMENT')
-      env = config.getOption('ENVIRONMENT').environment
+      fullEnv = config.ENVIRONMENT
+      env = config.ENVIRONMENT.environment
 
       expect(env).to.exist
       expect(env).to.be.a 'string'

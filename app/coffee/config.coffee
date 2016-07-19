@@ -1,8 +1,17 @@
 
-ConfigObj = require './configObj.coffee'
+_ = require 'underscore'
 
-config = new ConfigObj
-  ENVIRONMENT: window.env
+env = window.env
+
+# Set up environment variables
+# Based on window.env object, please set this up appropriately to your env.
+env = _.extend env,
+  development: env.environment is 'development'
+  test:        env.environment is 'test'
+  production:  env.environment is 'production'
+
+config =
+  ENVIRONMENT: env
   ROOTVIEW: '#root-view'
 
 module.exports = config

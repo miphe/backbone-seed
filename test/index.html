@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Backbone seed test suite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.0.0-1/mocha.css" media="screen" charset="utf-8">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script type="text/javascript">
+      window.env = {
+        "base_url"           : "http:\/\/some-domain.com",
+        "api_url"            : "http:\/\/some-domain.com\/api\/v1",
+        "google_analytics_id": "XX-XXXXXXXX-X",
+        "intercom_id"        : "",
+        "environment"        : "development"
+      };
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.0.0-1/mocha.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script type="text/javascript" src="scripts/tests.js"></script>
+  </body>
+</html>

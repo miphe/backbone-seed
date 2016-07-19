@@ -6,14 +6,6 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     browserify: {
-      foundation: {
-        src: [
-          'node_modules/underscore/underscore-min.js',
-          'node_modules/backbone/backbone-min.js',
-          'node_modules/backbone.marionette/backbone.marionette.min.js'
-        ],
-        dest: 'app/public/scripts/foundation.js'
-      },
 
       app: {
         src: ['app/coffee/**/*.coffee'],
@@ -26,10 +18,11 @@ module.exports = function (grunt) {
       },
 
       tests: {
-        src: ['test/coffee/**/*.coffee'],
+        // src: ['test/coffee/**/*.coffee'],
+        src: ['test/coffee/main.coffee'],
         dest: 'test/scripts/tests.js',
         options: {
-          transform: ['coffeeify'],
+          transform: ['coffeeify', 'browserify-compile-templates'],
           debug: true
         }
       }
@@ -142,9 +135,19 @@ module.exports = function (grunt) {
         }
       },
 
-      docs: {
+      test: {
         options: {
           port: 9002,
+          base: './test/',
+          onCreateServer: function (server, connect, options) {
+            console.log('Web server for tests created.');
+          }
+        }
+      },
+
+      docs: {
+        options: {
+          port: 9003,
           base: './docs',
           onCreateServer: function (server, connect, options) {
             console.log('Web server for docs created.');
@@ -168,7 +171,7 @@ module.exports = function (grunt) {
   grunt.registerTask('dev',     ['browserify', 'sass', 'watch']);
 
   // With app server
-  grunt.registerTask('dev-s',   ['browserify', 'sass', 'connect:app', 'watch']);
+  grunt.registerTask('dev-s',   ['browserify', 'sass', 'connect:app', 'connect:test', 'watch']);
 
   // With doc server
   grunt.registerTask('dev-d',   ['browserify', 'sass', 'sassdoc', 'jsdoc', 'connect:docs', 'watch']);

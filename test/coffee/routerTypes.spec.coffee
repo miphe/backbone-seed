@@ -24,7 +24,7 @@ module.exports = describe 'Router types', ->
     it 'should not be empty', ->
       expect(Routers.Base).to.not.be.empty
 
-    describe 'instance', ->
+    describe 'Instance', ->
 
       beforeEach ->
         meth = sinon.stub ebus.Navigate, 'trigger'

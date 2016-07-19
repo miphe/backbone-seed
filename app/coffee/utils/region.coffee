@@ -1,18 +1,14 @@
 
 Mn = require 'backbone.marionette'
 
-RegionManager = Mn.RegionManager.extend({})
+Regions =
 
-Content = new RegionManager
-  regions:
-    main   : 'main > .inner'
+  Content: new Mn.RegionManager
+    regions:
+      main: 'main > .inner'
 
-Statics = new RegionManager
-  regions:
-    header : 'header'
+  Statics: new Mn.RegionManager
+    regions:
+      header: 'header'
 
-module.exports =
-
-  # Region manager instance (root region manager)
-  Content: Content
-  Statics: Statics
+module.exports = Regions

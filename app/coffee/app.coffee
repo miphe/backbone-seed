@@ -22,3 +22,5 @@ App = Mn.Application.extend
 app = new App
 
 app.start config.options
+
+module.exports = App

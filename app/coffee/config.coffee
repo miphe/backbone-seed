@@ -13,5 +13,6 @@ env = _.extend env,
 config =
   ENVIRONMENT: env
   ROOTVIEW: '#root-view'
+  LAYOUT_EL_CLASS: 'page-layout'
 
 module.exports = config

@@ -2,7 +2,7 @@
 Mn       = require 'backbone.marionette'
 _        = require 'underscore'
 
-# GlMa     = require './globalManip.coffee'
+glob     = require './glob.coffee'
 config   = require '../config.coffee'
 
 # The event-bus is a communication center for events,
@@ -72,12 +72,11 @@ Navigate = Mn.Object.extend
       'hitType': 'pageview'
 
   ###*
-  * Invokes `updatePageTitle`
-  * @param {object} e - Event
+  * Invokes global `updatePageTitle`
+  * @param {object} e - Event, corresponding with a title via a map lookup
   ###
   updatePageTitle: (e) ->
-    console.log 'updatePageTitle', e
-    # GlMa.updatePageTitle e
+    glob.updatePageTitle e
 
 MainChannel = Mn.Object.extend
   initialize: ->

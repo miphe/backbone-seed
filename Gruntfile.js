@@ -100,7 +100,7 @@ module.exports = function (grunt) {
       // },
 
       appScripts: {
-        files: ['app/coffee/**/*.coffee'],
+        files: ['app/coffee/**/*.coffee', 'app/coffee/**/*.html'],
         tasks: ['browserify:app'],
         options: {
           interrupt: true

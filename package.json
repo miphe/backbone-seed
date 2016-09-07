@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/miphe/backbone-seed#readme",
   "devDependencies": {
+    "bower": "^1.5.3",
     "browserify-compile-templates": "^0.3.0",
     "chai": "^3.5.0",
     "compass-mixins": "^0.12.10",
+    "grid-lib": "0.0.8",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-coffeeify": "^0.1.3",

@@ -1,0 +1,25 @@
+{
+  "name": "backbone-seed",
+  "version": "0.1.0",
+  "authors": [
+    "André Drougge <andre.drougge@gmail.com>"
+  ],
+  "description": "Seed project with BackboneJS, MarionetteJS",
+  "keywords": [
+    "backbone.js", "seed", "marionette"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/miphe/backbone-seed",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "docs"
+  ],
+  "devDependencies": {
+    "susy": "~2.2.6",
+    "breakpoint-sass": "~2.6.1"
+  }
+}

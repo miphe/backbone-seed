@@ -21,16 +21,20 @@ _Short description.._
 
 - `curl -L https://npmjs.org/install.sh | sh` | _Install Node and NPM_
 - `npm install -g grunt-cli` | _Install the Grunt command-line interface globally_
+- `npm install -g bower` | _(Install bower through npm globally)_
 - `npm install -g coffee-script` | _Install CoffeeScript globally_
 - `git clone git@github.com:miphe/backbone-seed.git` | _Clone repository_
 
 ## Install project
 
-- `npm install` | _Install all dependencies locally_
+- `npm install` | _Install all node dependencies locally_
+- `bower install` _(Install all bower dependencies locally)_
 
 ## Start development
 
 - `grunt dev-s` | _Run a few select grunt tasks and spin up HTTP server_
+
+The server can be reached at `localhost:9001`
 
 In case you feel like running a different HTTP server, have a look at `Gruntfile.js` to see which tasks are available to you there.
 

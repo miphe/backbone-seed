@@ -29,7 +29,7 @@ StartCtrl =
     # tabUICollection.add { label: 'Number one!' }
     # tabUICollection.add { active: true, label: 'Second comes here' }
     # tabUICollection.add { label: 'And the last one' }
-    #
+
     # tabNav = new UI.View.NavigationList
     #   collection: tabUICollection
     #

@@ -3,11 +3,10 @@
   <div class="content-box">
     <h2>This template is an example template.</h2>
     <p>When using this view, please extend it and supply your own template.</p>
-    <pre>id: <%- obj.id %>,
-label: <%- obj.label %></pre>
+    <pre>label: <%- obj.label %></pre>
   </div>
 </script>
 
 <script type="text/template" id="nav_item">
-  <a class="ui-tabs-navigation-anchor <% if (obj.active) { %>is-active<% } %>" href="<%- obj.id %>"><%- obj.label %></a>
+  <a class="ui-tabs-navigation-anchor <% if (obj.active) { %>is-active<% } %>" href="#"><%- obj.label %></a>
 </script>

@@ -62,7 +62,9 @@ UITabs.Collection.Navigation = Backbone.Collection.extend
 
 UITabs.View = {}
 
-UITabs.View.TabContentItem = Mn.ItemView.extend
+# We use LayoutView instead of ItemView because some
+# childViews that extends this view may need regions.
+UITabs.View.TabContentItem = Mn.LayoutView.extend
   template: tpl.tabs.content_item
   tagName: 'section'
 

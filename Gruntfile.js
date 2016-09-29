@@ -116,7 +116,7 @@ module.exports = function (grunt) {
       // },
 
       testScripts: {
-        files: ['test/coffee/**/*.coffee'],
+        files: ['test/coffee/**/*.coffee', 'test/coffee/**/*.html'],
         tasks: ['browserify:tests'],
         options: {
           interrupt: true

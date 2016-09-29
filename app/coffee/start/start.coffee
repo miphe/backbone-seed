@@ -11,7 +11,7 @@ Start = {}
 
 Start.Model = {}
 
-Start.Model.ExampleModel = Backbone.Model.extend
+class Start.Model.ExampleModel extends Backbone.Model
   defaults:
     status: 'FAILED'
 
@@ -25,7 +25,7 @@ Start.Collection = {}
 
 Start.View = {}
 
-Start.View.ExampleView = Mn.ItemView.extend
+class Start.View.ExampleView extends Mn.View
   tagName: 'section'
   className: 'example-view'
   template: tpl.greeting

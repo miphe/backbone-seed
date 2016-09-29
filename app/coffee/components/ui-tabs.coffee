@@ -21,7 +21,7 @@ UITabs.Model = {}
 # - reference: String that will be used to find the correct
 #              template to load in the tab's content area.
 # - label:     The text that will show on the tab navigation item.
-UITabs.Model.Navigation = Backbone.Model.extend
+class UITabs.Model.Navigation extends Backbone.Model
 
   defaults:
     label: 'Example label'
@@ -32,7 +32,7 @@ UITabs.Model.Navigation = Backbone.Model.extend
 
 UITabs.Collection = {}
 
-UITabs.Collection.Navigation = Backbone.Collection.extend
+class UITabs.Collection.Navigation extends Backbone.Collection
   model: UITabs.Model.Navigation
 
   ###*
@@ -64,7 +64,7 @@ UITabs.View = {}
 
 # We use LayoutView instead of ItemView because some
 # childViews that extends this view may need regions.
-UITabs.View.TabContentItem = Mn.LayoutView.extend
+class UITabs.View.TabContentItem extends Mn.View
   template: tpl.tabs.content_item
   tagName: 'section'
 
@@ -104,11 +104,11 @@ UITabs.View.TabContentItem = Mn.LayoutView.extend
   deActivateMe: ->
     @$el.addClass 'is-hidden'
 
-UITabs.View.TabContentList = Mn.CollectionView.extend
+class UITabs.View.TabContentList extends Mn.CollectionView
   className: 'ui-tabs-content-outer ui-tabs-content-bordered'
   childView: UITabs.View.TabContentItem
 
-UITabs.View.NavigationItem = Mn.ItemView.extend
+class UITabs.View.NavigationItem extends Mn.View
   template: tpl.tabs.nav_item
   tagName: 'li'
 
@@ -152,7 +152,7 @@ UITabs.View.NavigationItem = Mn.ItemView.extend
   deActivateMe: ->
     @$el.find(@ui.anchor).removeClass 'is-active'
 
-UITabs.View.NavigationList = Mn.CollectionView.extend
+class UITabs.View.NavigationList extends Mn.CollectionView
   tagName: 'ul'
 
   ###*

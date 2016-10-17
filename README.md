@@ -53,11 +53,11 @@ CoffeeScript documentation is generated from .js files with [JSDoc](http://usejs
 
 ```
 ###*
-* onStart hook
-* Runs appropriate setup when application starts
-* @param {object} options Options where environment variables and initial setup data is supplied
-* @example
-* onStart: ({env: {..}, rootView: '#some-root-view-id'}) ->
-*   // Do things..
+# onStart hook
+# Runs appropriate setup when application starts
+# @param {object} options Options where environment variables and initial setup data is supplied
+# @example
+# onStart: ({env: {..}, rootView: '#some-root-view-id'}) ->
+#   // Do things..
 ###
 ```

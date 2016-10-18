@@ -3,7 +3,6 @@ _           = require 'underscore'
 
 # Routers
 StartRouter = require './start/start.router.coffee'
-EBus        = require './utils/ebus.coffee'
 
 class Routers
 

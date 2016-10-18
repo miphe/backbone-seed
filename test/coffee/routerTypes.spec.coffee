@@ -1,12 +1,12 @@
 
-expect = require('chai').expect
-sinon = require 'sinon'
-Mn = require 'backbone.marionette'
+expect     = require('chai').expect
+sinon      = require 'sinon'
+Mn         = require 'backbone.marionette'
+Radio      = require 'backbone.radio'
 
-Routers = require '../../app/coffee/utils/routerTypes.coffee'
-ebus = require '../../app/coffee/utils/ebus.coffee'
+Routers    = require '../../app/coffee/utils/routerTypes.coffee'
 someRouter = null
-meth = null
+navChannel = null
 
 module.exports = describe 'Router types', ->
 
@@ -26,21 +26,24 @@ module.exports = describe 'Router types', ->
 
     describe 'Instance', ->
 
+      navChannel = Radio.channel('navigate')
+
       beforeEach ->
-        meth = sinon.stub ebus.Navigate, 'trigger'
         someRouter = new Routers.Base
+        sinon.stub navChannel, 'trigger'
 
       afterEach ->
-        meth.restore()
         someRouter = null
+        navChannel.trigger.restore()
 
       it 'should be an instance of Marionette AppRouter', ->
         expect(someRouter).to.be.instanceof Mn.AppRouter
 
-      it 'should run EBus trigger method when routing', ->
+      it 'should trigger route events on route', ->
         expect(someRouter).to.have.property 'onRoute'
         expect(someRouter.onRoute).to.be.a 'function'
         someRouter.onRoute 'route-name', '/some/route', { a: 'b' }
 
-        expect(meth.calledOnce).to.be.true
-        expect(meth.calledWith('route', 'route-name'), 'calledWith "route" and "route-name" params').to.be.true
+        expect(navChannel.trigger.calledOnce).to.be.true
+        expect(navChannel.trigger.calledWith('route')).to.be.true
+        expect(navChannel.trigger.calledWith('route', 'route-name'), 'calledWith "route" and "route-name" params').to.be.true

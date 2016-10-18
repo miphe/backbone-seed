@@ -3,6 +3,7 @@ Backbone = require 'backbone'
 Mn       = require 'backbone.marionette'
 Routers  = require './routers.coffee'
 AppView  = require './utils/app-view.coffee'
+AppUtils = require './utils/app-utils.coffee'
 
 config = require './config.coffee'
 
@@ -25,8 +26,12 @@ class App extends Mn.Application
   #   // Do things..
   ###
   onStart: (options) ->
+    @utils = new AppUtils
     @rootRegion.show @rootView
     Backbone.history.start({ pushState: true }) if Backbone.history
+
+# Requirements for the Marionette browser extension
+window.__agent.start Backbone, Mn if window.__agent
 
 # Application instantiation and boot
 app = new App

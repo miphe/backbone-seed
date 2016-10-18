@@ -1,22 +1,12 @@
 
 Mn       = require 'backbone.marionette'
 _        = require 'underscore'
+Radio    = require 'backbone.radio'
 
 glob     = require './glob.coffee'
 config   = require '../config.coffee'
 
-# The event-bus is a communication center for events,
-# allowing modules to affect each other yet staying
-# completely decoupled.
-
-# The Navigate property is an event channel that should
-# only be used for navigation events.
-
-# The MainChannel, as the name implies should be used
-# for events that doesn't fit into another more specified
-# channel.
-
-Navigate = Mn.Object.extend
+class AppUtils extends Mn.Object
 
   ###*
   * Sets up listeners and callbacks to be invoked on Navigation events.
@@ -26,9 +16,10 @@ Navigate = Mn.Object.extend
   * @param {object} opts - Options
   ###
   initialize: (opts) ->
-    @listenTo @, 'all', @updatePageTitle
-    @listenTo @, 'all', @intercomUpdate if config.ENVIRONMENT.production
-    @listenTo @, 'all', @googleAnalyticsTracking if config.ENVIRONMENT.production
+    navChannel = Radio.channel('navigate')
+    @listenTo navChannel, 'all', @updatePageTitle
+    @listenTo navChannel, 'all', @intercomUpdate if config.ENVIRONMENT.production
+    @listenTo navChannel, 'all', @googleAnalyticsTracking if config.ENVIRONMENT.production
 
   ###*
   * Invokes the `Intercom` method on the global object (`window`) with the 'update' argument.
@@ -78,12 +69,4 @@ Navigate = Mn.Object.extend
   updatePageTitle: (e) ->
     glob.updatePageTitle e
 
-MainChannel = Mn.Object.extend
-  initialize: ->
-    # Add your listeners and callbacks here..
-
-EventBus =
-  Navigate: Navigate
-  MainChannel: MainChannel
-
-module.exports = EventBus
+module.exports = AppUtils

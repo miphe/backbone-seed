@@ -1,18 +1,16 @@
 
 Mn = require 'backbone.marionette'
-ebus = require './ebus.coffee'
+Radio = require 'backbone.radio'
 
 Routers = {}
 
 # Base router
-# Extends Marionette's AppRouter with following functionality:
-# Triggers navigation event to ebus onRoute
-Routers.Base = Mn.AppRouter.extend
+class Routers.Base extends Mn.AppRouter
 
   ###*
-  * When a route occurs, the 'route' event is triggered on the event bus.
+  * When a route occurs, the 'route' event is triggered on the navigate channel.
   ###
   onRoute: (name, path, args) ->
-    ebus.Navigate.trigger 'route', name
+    Radio.channel('navigate').trigger 'route', name
 
 module.exports = Routers

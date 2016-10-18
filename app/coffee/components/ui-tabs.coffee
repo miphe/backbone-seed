@@ -3,7 +3,6 @@ Mn =       require 'backbone.marionette'
 Backbone = require 'backbone'
 $ =        require 'jquery'
 _ =        require 'underscore'
-EBus =     require '../utils/ebus.coffee'
 F =        require '../utils/functions.coffee'
 
 tpl = {}
